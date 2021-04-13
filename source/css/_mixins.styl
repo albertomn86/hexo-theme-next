@@ -108,15 +108,16 @@ font-family-icons($icon = '') {
 }
 
 main-container() {
-  margin: 0 auto;
-  width: $content-desktop;
+  --width: $content-desktop;
+  margin: 0 calc((100vw - var(--width)) / 2);
+  width: var(--width);
 
   +desktop-large() {
-    width: $content-desktop-large;
+    --width: $content-desktop-large;
   }
 
   +desktop-largest() {
-    width: $content-desktop-largest;
+    --width: $content-desktop-largest;
   }
 }
 
@@ -217,5 +218,20 @@ toggle-close($position) {
       top: -5px;
       transform: rotate(-45deg);
     }
+  }
+}
+
+site-nav-hide-by-default() {
+  --scroll-height: 0;
+  height: 0;
+  overflow: hidden;
+  transition: height $transition-ease;
+
+  body:not(.site-nav-on) & .animated {
+    animation: none;
+  }
+
+  body.site-nav-on & {
+    height: var(--scroll-height);
   }
 }

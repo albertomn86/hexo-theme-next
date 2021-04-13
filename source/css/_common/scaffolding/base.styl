@@ -14,8 +14,12 @@ body {
   font-size: $font-size-base;
   line-height: $line-height-base;
   min-height: 100%;
+  overflow-x: hidden;
+  @supports (overflow-x: clip) {
+    overflow-x: clip;
+  }
   position: relative;
-  transition: all $transition-ease;
+  transition: padding $transition-ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -38,6 +42,8 @@ p {
 a {
   border-bottom: 1px solid $link-decoration-color;
   color: var(--link-color);
+  // For a:not(:any-link)
+  cursor: pointer;
   outline: 0;
   text-decoration: none;
   word-wrap();
